@@ -52,26 +52,27 @@ spec:
       project: roboshop
       component: mysql
       tier: db
-  metadata:
-    labels:
-      project: roboshop
-      component: mysql
-      tier: db
-  spec:
-    containers:
-      name: mysql
-      image: lavanyaesw/mysql:v1
-      imagePullPolicy: Always
-      volumeMounts:
-        - name: mysql
-          mountPath: /data/db
-        - name: mysql-config
-          mountPath: /etc/mysql/conf.d/my.cnf
-          subPath: my.cnf
-      volumes:
-        - name: mysql-config
-          configMap:
-            name: mysql
+    template:
+      metadata:
+        labels:
+          project: roboshop
+          component: mysql
+          tier: db
+    spec:
+      containers:
+        name: mysql
+        image: lavanyaesw/mysql:v1
+        imagePullPolicy: Always
+        volumeMounts:
+          - name: mysql
+            mountPath: /data/db
+          - name: mysql-config
+            mountPath: /etc/mysql/conf.d/my.cnf
+            subPath: my.cnf
+        volumes:
+          - name: mysql-config
+            configMap:
+              name: mysql
   # This is PVC
   volumeClaimTemplates:
   - metadata:
