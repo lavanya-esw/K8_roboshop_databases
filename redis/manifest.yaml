@@ -54,8 +54,8 @@ spec:
         name: redis
         image: redis:7.0
         volumeMounts:
-            - name: redis
-              mountPath: /data
+          - name: redis
+            mountPath: /data
   volumeClaimTemplates:
     - metadata: 
         name: redis
