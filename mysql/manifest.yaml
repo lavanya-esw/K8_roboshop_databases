@@ -31,7 +31,6 @@ metadata:
 spec:
   clusterIP: None
   selector:
-    matchLabels:
       project: roboshop
       component: mysql
       tier: db 
@@ -49,9 +48,10 @@ spec:
   replicas: 2
   serviceName: mysql-headless
   selector:
-    project: roboshop
-    component: mysql
-    tier: db
+    matchLabels:
+      project: roboshop
+      component: mysql
+      tier: db
   metadata:
     labels:
       project: roboshop
