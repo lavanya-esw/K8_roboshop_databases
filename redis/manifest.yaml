@@ -51,11 +51,12 @@ spec:
         tier: db
     spec:
       containers:
-        name: redis
-        image: redis:7.0
-        volumeMounts:
-          - name: redis
-            mountPath: /data
+        - name: redis
+          image: redis:7.0
+          imagePullPolicy: Always
+          volumeMounts:
+            - name: redis
+              mountPath: /data
   volumeClaimTemplates:
     - metadata: 
         name: redis
