@@ -45,34 +45,33 @@ metadata:
   name: mysql
   namespace: roboshop
 spec:
-  replicas: 2
-  serviceName: mysql-headless
+  serviceName: "mysql-headless" # this should be head less service name
+  replicas: 2 # by default is 1
   selector:
     matchLabels:
       project: roboshop
       component: mysql
       tier: db
-    template:
-      metadata:
-        labels:
-          project: roboshop
-          component: mysql
-          tier: db
+  template:
+    metadata:
+      labels:
+        project: roboshop
+        component: mysql
+        tier: db
     spec:
       containers:
-        name: mysql
-        image: lavanyaesw/mysql:v1
-        imagePullPolicy: Always
+      - name: mysql
+        image: joindevops/mysql:v1
         volumeMounts:
-          - name: mysql
-            mountPath: /data/db
-          - name: mysql-config
-            mountPath: /etc/mysql/conf.d/my.cnf
-            subPath: my.cnf
-        volumes:
-          - name: mysql-config
-            configMap:
-              name: mysql
+        - name: mysql
+          mountPath: /data/db
+        - name: mysql-config
+          mountPath: /etc/mysql/conf.d/my.cnf
+          subPath: my.cnf
+      volumes:
+        - name: mysql-config
+          configMap:
+            name: mysql
   # This is PVC
   volumeClaimTemplates:
   - metadata:
