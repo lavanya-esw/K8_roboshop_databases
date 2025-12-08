@@ -31,9 +31,10 @@ metadata:
 spec:
   clusterIP: None
   selector:
-    project: roboshop
-    component: mysql
-    tier: db 
+    matchLabels:
+      project: roboshop
+      component: mysql
+      tier: db 
   ports:
     - protocol: TCP
       port: 3306 # service port
@@ -60,6 +61,7 @@ spec:
     containers:
       name: mysql
       image: lavanyaesw/mysql:v1
+      imagePullPolicy: Always
       volumeMounts:
         - name: mysql
           mountPath: /data/db

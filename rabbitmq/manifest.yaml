@@ -36,10 +36,9 @@ metadata:
   name: rabbitmq
   namespace: roboshop
 spec:
+  serviceName: rabbitmq-headless
+  replicas: 2
   selector:
-    serviceName: rabbitmq-headless
-    replicas: 2
-    selector:
     matchLabels:
       project: roboshop
       component: rabbitmq

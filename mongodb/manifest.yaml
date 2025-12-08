@@ -52,6 +52,7 @@ spec:
       containers:
         - name: mongodb
           image: lavanyaesw/mongodb:v1
+          imagePullPolicy: Always
           volumeMounts:
             - name: mongodb
               mountPath: /data/db
